@@ -1,5 +1,10 @@
 [workspace]
 publish = false
 dependencies_update = false
+changelog_update = false    # we will use runtime package for changelogs
 
-# might need to set `publish = false` for each package in the workspace, if release-plz workflow generates executables
+
+[[package]]
+name = "oz-parachain-template-runtime"
+changelog_update = true
+changelog_path = "./CHANGELOG.md"
