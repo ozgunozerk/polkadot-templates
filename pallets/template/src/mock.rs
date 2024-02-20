@@ -1,10 +1,6 @@
-use frame_support::{parameter_types, traits::Everything};
+use frame_support::{derive_impl, parameter_types};
 use frame_system as system;
-use sp_core::H256;
-use sp_runtime::{
-    traits::{BlakeTwo256, IdentityLookup},
-    BuildStorage,
-};
+use sp_runtime::{traits::IdentityLookup, BuildStorage};
 
 type Block = frame_system::mocking::MockBlock<Test>;
 
@@ -22,30 +18,13 @@ parameter_types! {
     pub const SS58Prefix: u8 = 42;
 }
 
+#[derive_impl(frame_system::config_preludes::TestDefaultConfig as frame_system::DefaultConfig)]
 impl system::Config for Test {
-    type AccountData = ();
-    type AccountId = u64;
-    type BaseCallFilter = Everything;
     type Block = Block;
     type BlockHashCount = BlockHashCount;
-    type BlockLength = ();
-    type BlockWeights = ();
-    type DbWeight = ();
-    type Hash = H256;
-    type Hashing = BlakeTwo256;
     type Lookup = IdentityLookup<Self::AccountId>;
-    type MaxConsumers = frame_support::traits::ConstU32<16>;
     type Nonce = u64;
-    type OnKilledAccount = ();
-    type OnNewAccount = ();
-    type OnSetCode = ();
-    type PalletInfo = PalletInfo;
-    type RuntimeCall = RuntimeCall;
-    type RuntimeEvent = RuntimeEvent;
-    type RuntimeOrigin = RuntimeOrigin;
     type SS58Prefix = SS58Prefix;
-    type SystemWeightInfo = ();
-    type Version = ();
 }
 
 impl crate::Config for Test {
