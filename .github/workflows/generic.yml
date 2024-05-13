@@ -1,4 +1,4 @@
-name: "cargo tests"
+name: "generic template cargo tests"
 
 on:
   push:
